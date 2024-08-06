@@ -1,4 +1,9 @@
+const redux= require('redux')
+const createStore = redux.configureStore;
+
+
 const CAKE_ORDERED ='CAKE_ORDERED';
+
 function cakeOrder() {
   return{
     type: CAKE_ORDERED,
@@ -25,3 +30,11 @@ const reducer = (state=initialState,action) => {
     }
   
 }
+
+const store = createStore(reducer);
+console.log("initial state",store.getState())
+store.subscribe(() => console.log("updated state",store.getState()))
+
+store.dispatch(cakeOrder());
+store.dispatch(cakeOrder());
+store.dispatch(cakeOrder());
